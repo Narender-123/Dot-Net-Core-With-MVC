@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PerkMinds\\IdentityFrameworkDemo\\IdentityFrameworkDemo.csproj": {}
+    "D:\\PerkMinds\\Dot Net Core With MVC\\IdentityFrameworkDemo\\IdentityFrameworkDemo.csproj": {}
   },
   "projects": {
-    "D:\\PerkMinds\\IdentityFrameworkDemo\\IdentityFrameworkDemo.csproj": {
+    "D:\\PerkMinds\\Dot Net Core With MVC\\IdentityFrameworkDemo\\IdentityFrameworkDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PerkMinds\\IdentityFrameworkDemo\\IdentityFrameworkDemo.csproj",
+        "projectUniqueName": "D:\\PerkMinds\\Dot Net Core With MVC\\IdentityFrameworkDemo\\IdentityFrameworkDemo.csproj",
         "projectName": "IdentityFrameworkDemo",
-        "projectPath": "D:\\PerkMinds\\IdentityFrameworkDemo\\IdentityFrameworkDemo.csproj",
+        "projectPath": "D:\\PerkMinds\\Dot Net Core With MVC\\IdentityFrameworkDemo\\IdentityFrameworkDemo.csproj",
         "packagesPath": "C:\\Users\\om\\.nuget\\packages\\",
-        "outputPath": "D:\\PerkMinds\\IdentityFrameworkDemo\\obj\\",
+        "outputPath": "D:\\PerkMinds\\Dot Net Core With MVC\\IdentityFrameworkDemo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\om\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
