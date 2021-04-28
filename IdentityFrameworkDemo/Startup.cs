@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityFrameworkDemo.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace IdentityFrameworkDemo
 {
@@ -23,7 +26,18 @@ namespace IdentityFrameworkDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Here we Configure the Services we have to provide the Application
+            services.AddDbContext<UserDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("UserDBCS")));
             services.AddControllersWithViews();
+
+            //Here we Configure Identity Framework that will provide Classes to work on the Different Authentication Issues like User Management
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<UserDbContext>();
+
+            services.AddControllersWithViews();
+//#if DEBUG
+//            services.AddRazorPages().AddRazorRunTimeComplilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +57,9 @@ namespace IdentityFrameworkDemo
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            //To Enable the Middelware we have to use app.useAuthentication();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
