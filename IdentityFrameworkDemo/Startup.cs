@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using IdentityFrameworkDemo.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using IdentityFrameworkDemo.Repository;
 
 namespace IdentityFrameworkDemo
 {
@@ -36,6 +37,7 @@ namespace IdentityFrameworkDemo
                 .AddEntityFrameworkStores<UserDbContext>();
 
             services.AddControllersWithViews();
+            services.AddScoped<IAccountRepository, AccountRepository>();
 //#if DEBUG
 //            services.AddRazorPages().AddRazorRunTimeComplilation();
         }
