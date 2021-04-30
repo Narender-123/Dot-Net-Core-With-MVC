@@ -56,5 +56,37 @@ namespace IdentityFrameworkDemo.Controllers
         {
             return View();
         }
+
+        //Here we define the Logic of SignIn Afeter the page is post back to the Server
+        [Route("login")]
+        [HttpPost]
+        public async Task<IActionResult> Login(SignInModel signInModel)
+        {
+            //First We Check the Model States
+            if (ModelState.IsValid) 
+            {
+                //Invoking Login Logic
+                var result = await _accountRepository.PasswordSignInAsync(signInModel);
+
+                //After we are getting the result we check the Success
+                if (result.Succeeded) 
+                {
+                    return RedirectToAction("Index","Home");
+                }
+                //else we are geneate the Model state error
+                ModelState.AddModelError("","Plz Enter the write Username and password");
+                return View(signInModel);
+            }
+            //else we return the Same Modle From Here
+            return View(signInModel);
+        }
+
+        [Route("logout")]
+        public async Task<IActionResult> Logout() 
+        {
+            await _accountRepository.SignOutAsync();
+            return RedirectToAction("Index","Home");
+        }
+
     }
 }

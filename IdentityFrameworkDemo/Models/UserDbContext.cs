@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace IdentityFrameworkDemo.Models
 {
-    public class UserDbContext:IdentityDbContext
+    //If we are using IdentityUser instead of Custom User then we have need to Define the User Also
+    public class UserDbContext:IdentityDbContext<ApplicationUser>
     {
         public UserDbContext(DbContextOptions<UserDbContext> options):base(options)
         {

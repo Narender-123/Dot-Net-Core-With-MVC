@@ -33,10 +33,24 @@ namespace IdentityFrameworkDemo
             services.AddControllersWithViews();
 
             //Here we Configure Identity Framework that will provide Classes to work on the Different Authentication Issues like User Management
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<UserDbContext>();
 
+            //By default the Identity Framework Configure all the Setting For Us
+            //But We can also Configure the Setting for Different Options
+            services.Configure<IdentityOptions>(options=> 
+            {
+                options.Password.RequiredLength = 3;
+                options.Password.RequiredUniqueChars = 2;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            });
+
             services.AddControllersWithViews();
+
+            //Here we Add the Repository to make use of  it bu using Dependency Injection
             services.AddScoped<IAccountRepository, AccountRepository>();
 //#if DEBUG
 //            services.AddRazorPages().AddRazorRunTimeComplilation();
@@ -69,7 +83,7 @@ namespace IdentityFrameworkDemo
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Account}/{action=Login}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
