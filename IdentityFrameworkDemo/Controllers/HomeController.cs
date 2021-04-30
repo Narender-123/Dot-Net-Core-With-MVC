@@ -1,4 +1,5 @@
 ﻿using IdentityFrameworkDemo.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,7 +24,14 @@ namespace IdentityFrameworkDemo.Controllers
             return View();
         }
 
+        //Here we can Apply the Authorisation attribute to restrict the Unauthroized user
+        [Authorize]
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Demo1()
         {
             return View();
         }

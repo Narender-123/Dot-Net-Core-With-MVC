@@ -193,3 +193,4 @@ D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Identi
 D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Shared\_footer.cshtml.g.cs
 D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Shared\_header.cshtml.g.cs
 D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Shared\_LoginInfo.cshtml.g.cs
+D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Home\Demo1.cshtml.g.cs

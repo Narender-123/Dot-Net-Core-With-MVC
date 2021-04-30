@@ -60,7 +60,7 @@ namespace IdentityFrameworkDemo.Controllers
         //Here we define the Logic of SignIn Afeter the page is post back to the Server
         [Route("login")]
         [HttpPost]
-        public async Task<IActionResult> Login(SignInModel signInModel)
+        public async Task<IActionResult> Login(SignInModel signInModel, string returnUrl)
         {
             //First We Check the Model States
             if (ModelState.IsValid) 
@@ -71,6 +71,10 @@ namespace IdentityFrameworkDemo.Controllers
                 //After we are getting the result we check the Success
                 if (result.Succeeded) 
                 {
+                    if (!String.IsNullOrEmpty(returnUrl)) 
+                    {
+                        return LocalRedirect(returnUrl);
+                    }
                     return RedirectToAction("Index","Home");
                 }
                 //else we are geneate the Model state error

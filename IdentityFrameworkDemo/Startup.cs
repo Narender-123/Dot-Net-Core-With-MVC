@@ -37,7 +37,7 @@ namespace IdentityFrameworkDemo
                 .AddEntityFrameworkStores<UserDbContext>();
 
             //By default the Identity Framework Configure all the Setting For Us
-            //But We can also Configure the Setting for Different Options
+            //But We can also Configure the Setting for Different Options(In this Case Password)
             services.Configure<IdentityOptions>(options=> 
             {
                 options.Password.RequiredLength = 3;
@@ -46,6 +46,13 @@ namespace IdentityFrameworkDemo
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
+            });
+
+            //Here we have to Configure Settings for Redirection to Login Page
+            services.ConfigureApplicationCookie(config => 
+            {
+                //config.LoginPath = "/login";
+                config.LoginPath = Configuration["Application:LoginPath"];
             });
 
             services.AddControllersWithViews();
@@ -74,9 +81,10 @@ namespace IdentityFrameworkDemo
 
             app.UseRouting();
 
-            //To Enable the Middelware we have to use app.useAuthentication();
+            //To Enable the Middelware called Authentication, we have to use app.useAuthentication();
             app.UseAuthentication();
 
+            //Authorization can be Applied to action Level or Controller Level
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
