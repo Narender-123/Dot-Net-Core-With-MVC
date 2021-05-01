@@ -12,6 +12,7 @@ using IdentityFrameworkDemo.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using IdentityFrameworkDemo.Repository;
+using IdentityFrameworkDemo.Helpers;
 
 namespace IdentityFrameworkDemo
 {
@@ -59,6 +60,10 @@ namespace IdentityFrameworkDemo
 
             //Here we Add the Repository to make use of  it bu using Dependency Injection
             services.AddScoped<IAccountRepository, AccountRepository>();
+
+            //Here we have to tell the Application of Our UserClaimsPrincipalFactory
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipleFactory>();
+
 //#if DEBUG
 //            services.AddRazorPages().AddRazorRunTimeComplilation();
         }
