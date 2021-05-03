@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using IdentityFrameworkDemo.Repository;
 using IdentityFrameworkDemo.Helpers;
+using IdentityFrameworkDemo.Services;
 
 namespace IdentityFrameworkDemo
 {
@@ -63,6 +64,9 @@ namespace IdentityFrameworkDemo
 
             //Here we have to tell the Application of Our UserClaimsPrincipalFactory
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipleFactory>();
+
+            //Here We Add the Service which we are Using to Get the Ueer Id From HttpContext
+            services.AddScoped<IUserService, UserService>();
 
 //#if DEBUG
 //            services.AddRazorPages().AddRazorRunTimeComplilation();

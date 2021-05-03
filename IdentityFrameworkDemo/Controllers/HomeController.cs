@@ -1,4 +1,5 @@
 ﻿using IdentityFrameworkDemo.Models;
+using IdentityFrameworkDemo.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,14 +14,20 @@ namespace IdentityFrameworkDemo.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUserService _userService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IUserService userService)
         {
+            _userService = userService;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+            var UserId = _userService.GetUserId();
+            var IsLoggedIn = _userService.IsAuthenticated();
+            ViewData["UserId"] = UserId;
+            ViewData["IsLoggedIn"] = IsLoggedIn;
             return View();
         }
 
