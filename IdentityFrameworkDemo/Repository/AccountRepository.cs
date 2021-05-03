@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityFrameworkDemo.Models;
+using IdentityFrameworkDemo.Services;
 using Microsoft.AspNetCore.Identity;
 
 
@@ -14,13 +15,16 @@ namespace IdentityFrameworkDemo.Repository
         //Here we have define the Fileds to Mange Our Entity
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IUserService _userService;
 
         //Here we have to Inject(Add) Dependencies bcoz we are using Identity Framework here So we are using the Classes that will handle the Details
 
-        public AccountRepository(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountRepository(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
+            IUserService userService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _userService = userService;
         }
         public async Task<IdentityResult> CreateAsyncUser(SignUpModel userModel)
         {
@@ -47,6 +51,15 @@ namespace IdentityFrameworkDemo.Repository
         public async Task SignOutAsync() 
         {
             await _signInManager.SignOutAsync();
+        }
+
+        //Here we need the Logged in User So that we can Performed changes to a Specific user for that we get Id of Current LoggedIn User
+        public async Task<IdentityResult> ChangePasswordAsync(ChangePasswordModel model) 
+        {
+            var UserId = _userService.GetUserId();
+            var User = await _userManager.FindByIdAsync(UserId);
+            var result = await _userManager.ChangePasswordAsync(User, model.CurrentPassword, model.NewPassword);
+            return result;
         }
     }
 }

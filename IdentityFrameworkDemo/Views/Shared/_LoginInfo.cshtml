@@ -9,10 +9,11 @@
            Hello  @(User.FindFirst("UserFirstName").Value +" "+ User.FindFirst("UserLastName").Value)
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item btn btn-primary" asp-action="Logout" asp-controller="Account">Logout</a>
+            <a class="dropdown-item btn btn-outline-primary" asp-action="Logout" asp-controller="Account">Logout</a>
+            <a class="dropdown-item btn btn-outline-primary" asp-action="ChangePassword" asp-controller="Account">Change Password</a>
             @*<a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>*@
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>*@
         </div>
     </li>
 }

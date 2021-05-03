@@ -11,5 +11,7 @@ namespace IdentityFrameworkDemo.Repository
         Task<SignInResult> PasswordSignInAsync(SignInModel signInModel);
 
         Task SignOutAsync();
+
+        Task<IdentityResult> ChangePasswordAsync(ChangePasswordModel model);
     }
 }
