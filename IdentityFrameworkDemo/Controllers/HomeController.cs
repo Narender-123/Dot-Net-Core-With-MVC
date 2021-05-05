@@ -15,19 +15,32 @@ namespace IdentityFrameworkDemo.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
 
-        public HomeController(ILogger<HomeController> logger,IUserService userService)
+        public HomeController(ILogger<HomeController> logger,IUserService userService,
+            IEmailService emailService)
         {
             _userService = userService;
+            _emailService = emailService;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            var UserId = _userService.GetUserId();
-            var IsLoggedIn = _userService.IsAuthenticated();
-            ViewData["UserId"] = UserId;
-            ViewData["IsLoggedIn"] = IsLoggedIn;
+            //var UserId = _userService.GetUserId();
+            //var IsLoggedIn = _userService.IsAuthenticated();
+            //ViewData["UserId"] = UserId;
+            //ViewData["IsLoggedIn"] = IsLoggedIn;
+
+            UserEmailOptionsModel options = new UserEmailOptionsModel
+            {
+                ToEmails = new List<string>
+                {
+                    "narenderkumar2121@gmail.com",
+                    "17cs1008@mvn.edu.in"
+                }
+            };
+            _emailService.SendTestEmail(options);
             return View();
         }
 

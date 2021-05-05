@@ -11,10 +11,11 @@ using System.Text;
 
 namespace IdentityFrameworkDemo.Services
 {
-    public class EmailService
+    //Custom SMTP Service
+    public class EmailService : IEmailService
     {
-        //This is the actual path of the file we want ot get it from the emailTemplates
-        private string templatePath = @"EmailTemplate/{0}.html";
+        //This is the actual path of the file we want to get it from the emailTemplates
+        private string templatePath = @"EmailTemplates/{0}.html";
         private readonly SMTPConfigModel _smtpConfig;
 
         public EmailService(IOptions<SMTPConfigModel> smtpConfig)
@@ -22,8 +23,18 @@ namespace IdentityFrameworkDemo.Services
             _smtpConfig = smtpConfig.Value;
         }
 
+        //This Method is used to Send the TestEmail
+        public async Task SendTestEmail(UserEmailOptionsModel userEmailOptionsModel)
+        {
+            userEmailOptionsModel.Subject = "Reminder For Delivery Leave From Narender/Bookstore";
+            userEmailOptionsModel.Body = GetEmailBody("TestEmail");
+            await SendEmail(userEmailOptionsModel);
+        }
+
+
+
         //This Method is Send the Mail
-        private async Task SendEmail(UserEmailOptionsModel userEmailOptions) 
+        private async Task SendEmail(UserEmailOptionsModel userEmailOptions)
         {
             //This is the Structure of  MailMesssage
             MailMessage mailMessage = new MailMessage
@@ -34,15 +45,15 @@ namespace IdentityFrameworkDemo.Services
                 IsBodyHtml = _smtpConfig.IsBodyHtml
             };
 
-            foreach (var toEmail in userEmailOptions.ToEmails) 
+            foreach (var toEmail in userEmailOptions.ToEmails)
             {
                 mailMessage.To.Add(toEmail);
             }
 
             //We require NetworkCredential for theUserName And Password for SmTp Service
-            NetworkCredential networkCredential = new NetworkCredential(_smtpConfig.UserName,_smtpConfig.Password);
+            NetworkCredential networkCredential = new NetworkCredential(_smtpConfig.UserName, _smtpConfig.Password);
 
-            //Now we have to create SMTP Clinet and by using  that clien we had to send the Mail
+            //Now we have to create SMTP Clinet and by using  that client we had to send the Mail
 
             SmtpClient smtpClient = new SmtpClient
             {
@@ -56,7 +67,7 @@ namespace IdentityFrameworkDemo.Services
             await smtpClient.SendMailAsync(mailMessage);
         }
 
-        //This Methos Will read the Body from the Htmltemplate which is in the TestEmail.html
+        //This Method Will read the Body from the Htmltemplate which is in the TestEmail.html
         private string GetEmailBody(string templateName)
         {
             var body = File.ReadAllText(string.Format(templatePath, templateName));

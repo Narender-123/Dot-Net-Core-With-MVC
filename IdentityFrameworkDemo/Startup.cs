@@ -69,8 +69,11 @@ namespace IdentityFrameworkDemo
             //Here we have to tell the Application of Our UserClaimsPrincipalFactory
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipleFactory>();
 
-            //Here We Add the Service which we are Using to Get the Ueer Id From HttpContext
+            //Here We Add the Service which we are Using to Get the User Id From HttpContext
             services.AddScoped<IUserService, UserService>();
+
+            //Here we add the EmailSerive Using SMTP to send the emails
+            services.AddScoped<IEmailService, EmailService>();
 
 //#if DEBUG
 //            services.AddRazorPages().AddRazorRunTimeComplilation();
