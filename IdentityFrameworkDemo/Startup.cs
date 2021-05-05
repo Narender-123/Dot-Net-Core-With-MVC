@@ -50,6 +50,10 @@ namespace IdentityFrameworkDemo
                 options.Password.RequireNonAlphanumeric = false;
             });
 
+            //Here we register the SMTPConfigModel to SMTPConfig 
+            services.Configure<SMTPConfigModel>(Configuration.GetSection("SMTPConfig"));
+
+
             //Here we have to Configure Settings for Redirection to Login Page
             services.ConfigureApplicationCookie(config => 
             {
