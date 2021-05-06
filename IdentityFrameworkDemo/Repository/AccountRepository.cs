@@ -80,6 +80,11 @@ namespace IdentityFrameworkDemo.Repository
             return result;
         }
 
+        public async Task<IdentityResult> ConfirmEmailAsync(string uid, string token) 
+        {
+             return await _userManager.ConfirmEmailAsync(await _userManager.FindByIdAsync(uid),token);
+        }
+
         private async Task SendEmailConfirmationEmail(ApplicationUser user, string token)
         {
             string appDomain = _configuration.GetSection("Application:AppDomain").Value;

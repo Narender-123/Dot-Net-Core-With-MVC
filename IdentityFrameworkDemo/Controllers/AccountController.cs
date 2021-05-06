@@ -126,5 +126,22 @@ namespace IdentityFrameworkDemo.Controllers
             return View(model);
         }
 
+        //This Controller Action Method Will Handle the GetRequest of the Link in the Email on the Server
+        [HttpGet("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail(string uid, string token)
+        {
+            if (!string.IsNullOrEmpty(uid) && !string.IsNullOrEmpty(token)) 
+            {
+                token = token.Replace(' ', '+');
+               var result = await _accountRepository.ConfirmEmailAsync(uid, token);
+                if (result.Succeeded) 
+                {
+                    //Flag for the Success
+                    ViewBag.IsSuccess = true;
+                }
+            }
+            return View();
+        }
+
     }
 }
