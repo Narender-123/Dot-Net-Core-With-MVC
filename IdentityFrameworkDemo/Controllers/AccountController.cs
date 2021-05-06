@@ -46,7 +46,7 @@ namespace IdentityFrameworkDemo.Controllers
                 }
 
                 ModelState.Clear();
-                return View();
+                return RedirectToAction("Index","Home");
             }
             return View(signUpModel);
         }
@@ -77,8 +77,15 @@ namespace IdentityFrameworkDemo.Controllers
                     }
                     return RedirectToAction("Index","Home");
                 }
-                //else we are geneate the Model state error
-                ModelState.AddModelError("","Plz Enter the write Username and password");
+                if (result.IsNotAllowed)
+                {
+                    ModelState.AddModelError("", "Plz Confirm the Email First and then Login");
+                }
+                else
+                {
+                    //else we are geneate the Model state error
+                    ModelState.AddModelError("", "Plz Enter the write Username and password");
+                }
                 return View(signInModel);
             }
             //else we return the Same Modle From Here

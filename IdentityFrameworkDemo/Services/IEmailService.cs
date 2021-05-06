@@ -6,5 +6,6 @@ namespace IdentityFrameworkDemo.Services
     public interface IEmailService
     {
         Task SendTestEmail(UserEmailOptionsModel userEmailOptionsModel);
+        Task SendEmailForEmailConfirmation(UserEmailOptionsModel userEmailOptionsModel);
     }
 }

@@ -36,7 +36,7 @@ namespace IdentityFrameworkDemo
 
             //Here we Configure Identity Framework that will provide Classes to work on the Different Authentication Issues like User Management
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<UserDbContext>();
+                .AddEntityFrameworkStores<UserDbContext>().AddDefaultTokenProviders();
 
             //By default the Identity Framework Configure all the Setting For Us
             //But We can also Configure the Setting for Different Options(In this Case Password)
@@ -48,6 +48,8 @@ namespace IdentityFrameworkDemo
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
+
+                options.SignIn.RequireConfirmedEmail = true;
             });
 
             //Here we register the SMTPConfigModel to SMTPConfig 

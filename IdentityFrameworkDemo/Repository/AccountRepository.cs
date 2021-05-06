@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using IdentityFrameworkDemo.Models;
 using IdentityFrameworkDemo.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 
 
 //To Save the Details we have need to Create a repository
@@ -16,15 +17,21 @@ namespace IdentityFrameworkDemo.Repository
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
+        private readonly IConfiguration _configuration;
 
         //Here we have to Inject(Add) Dependencies bcoz we are using Identity Framework here So we are using the Classes that will handle the Details
 
         public AccountRepository(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
-            IUserService userService)
+            IUserService userService,
+            IEmailService emailService,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _userService = userService;
+            _emailService = emailService;
+            _configuration = configuration;
         }
         public async Task<IdentityResult> CreateAsyncUser(SignUpModel userModel)
         {
@@ -38,6 +45,17 @@ namespace IdentityFrameworkDemo.Repository
                 UserName = userModel.Email,
             };
             var result = await _userManager.CreateAsync(user, userModel.Password);
+
+            //Code to Implement EmailConfirmation
+            if (result.Succeeded)
+            {
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                if (!string.IsNullOrEmpty(token)) 
+                {
+                    //Here we have to implement the code to send the Email with token to UserEmailId
+                    await SendEmailConfirmationEmail(user, token);
+                }
+            }
             return result;
         }
 
@@ -61,5 +79,23 @@ namespace IdentityFrameworkDemo.Repository
             var result = await _userManager.ChangePasswordAsync(User, model.CurrentPassword, model.NewPassword);
             return result;
         }
+
+        private async Task SendEmailConfirmationEmail(ApplicationUser user, string token)
+        {
+            string appDomain = _configuration.GetSection("Application:AppDomain").Value;
+            string confirmationLink = _configuration.GetSection("Application:EmailConfirmation").Value;
+            UserEmailOptionsModel Options = new UserEmailOptionsModel
+            {
+                ToEmails = new List<string>() { user.Email },
+                Placeholders = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("{{UserName}}", user.FirstName),
+                    new KeyValuePair<string, string>("{{link}}", string.Format(appDomain + confirmationLink,user.Id,token))
+                }
+
+            };
+            await _emailService.SendEmailForEmailConfirmation(Options);
+        }
+
     }
 }

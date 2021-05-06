@@ -12,5 +12,8 @@ namespace IdentityFrameworkDemo.Models
         public string Subject { get; set; }
 
         public string Body { get; set; }
+
+        //we can Update the Body text By using these Placeholders
+        public List<KeyValuePair<String,String>> Placeholders { get; set; }
     }
 }

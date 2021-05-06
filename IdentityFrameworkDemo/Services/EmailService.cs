@@ -26,8 +26,16 @@ namespace IdentityFrameworkDemo.Services
         //This Method is used to Send the TestEmail
         public async Task SendTestEmail(UserEmailOptionsModel userEmailOptionsModel)
         {
-            userEmailOptionsModel.Subject = "Reminder For Delivery Leave From Narender/Bookstore";
-            userEmailOptionsModel.Body = GetEmailBody("TestEmail");
+            userEmailOptionsModel.Subject = UpdatePlaceHolders("Reminder For Delivery Leave From Narender / Bookstore", userEmailOptionsModel.Placeholders);
+            userEmailOptionsModel.Body = UpdatePlaceHolders(GetEmailBody("TestEmail"),userEmailOptionsModel.Placeholders);
+            await SendEmail(userEmailOptionsModel);
+        }
+
+        //This Method will send the Email For EmailConfirmation
+        public async Task SendEmailForEmailConfirmation(UserEmailOptionsModel userEmailOptionsModel)
+        {
+            userEmailOptionsModel.Subject = UpdatePlaceHolders("Hello {{UserName}} Confirm Your Email", userEmailOptionsModel.Placeholders);
+            userEmailOptionsModel.Body = UpdatePlaceHolders(GetEmailBody("EmailConfirm"), userEmailOptionsModel.Placeholders);
             await SendEmail(userEmailOptionsModel);
         }
 
@@ -72,6 +80,20 @@ namespace IdentityFrameworkDemo.Services
         {
             var body = File.ReadAllText(string.Format(templatePath, templateName));
             return body;
+        }
+
+        private string UpdatePlaceHolders(string text, List<KeyValuePair<string, string>> placeHolders) 
+        {
+            if (!string.IsNullOrEmpty(text) && placeHolders != null) 
+            {
+                foreach (var placeHolder in placeHolders) {
+                    if (text.Contains(placeHolder.Key)) 
+                    {
+                        text = text.Replace(placeHolder.Key,placeHolder.Value);
+                    }
+                }
+            }
+            return text;
         }
 
     }

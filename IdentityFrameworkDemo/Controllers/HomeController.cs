@@ -38,6 +38,10 @@ namespace IdentityFrameworkDemo.Controllers
                 {
                     "narenderkumar2121@gmail.com",
                     "17cs1008@mvn.edu.in"
+                },
+                Placeholders = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("{{UserName}}", "Mr.Narender Tanwar")
                 }
             };
             _emailService.SendTestEmail(options);
