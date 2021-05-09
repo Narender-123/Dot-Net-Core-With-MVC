@@ -49,14 +49,19 @@ namespace IdentityFrameworkDemo.Repository
             //Code to Implement EmailConfirmation
             if (result.Succeeded)
             {
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                if (!string.IsNullOrEmpty(token)) 
-                {
-                    //Here we have to implement the code to send the Email with token to UserEmailId
-                    await SendEmailConfirmationEmail(user, token);
-                }
+                await GenerateEmailConfirmationTokenAsync(user);
             }
             return result;
+        }
+
+        public async Task GenerateEmailConfirmationTokenAsync(ApplicationUser user) 
+        {
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            if (!string.IsNullOrEmpty(token))
+            {
+                //Here we have to implement the code to send the Email with token to UserEmailId
+                await SendEmailConfirmationEmail(user, token);
+            }
         }
 
         public async Task<SignInResult> PasswordSignInAsync(SignInModel signInModel) 
@@ -80,9 +85,16 @@ namespace IdentityFrameworkDemo.Repository
             return result;
         }
 
+        //This Method will Finally Confirm the Email on the basis of the token & Uid it ecieved 
         public async Task<IdentityResult> ConfirmEmailAsync(string uid, string token) 
         {
              return await _userManager.ConfirmEmailAsync(await _userManager.FindByIdAsync(uid),token);
+        }
+
+        //This Method will return the User by using the Email
+        public async Task<ApplicationUser> GetUserByEmailAsync(string email)
+        {
+            return await _userManager.FindByEmailAsync(email);
         }
 
         private async Task SendEmailConfirmationEmail(ApplicationUser user, string token)

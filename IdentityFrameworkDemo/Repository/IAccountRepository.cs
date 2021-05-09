@@ -8,11 +8,19 @@ namespace IdentityFrameworkDemo.Repository
     public interface IAccountRepository
     {
         Task<IdentityResult> CreateAsyncUser(SignUpModel userModel);
+
+        Task GenerateEmailConfirmationTokenAsync(ApplicationUser user);
         Task<SignInResult> PasswordSignInAsync(SignInModel signInModel);
 
         Task SignOutAsync();
 
         Task<IdentityResult> ChangePasswordAsync(ChangePasswordModel model);
+
         Task<IdentityResult> ConfirmEmailAsync(string uid, string token);
+
+        Task<ApplicationUser> GetUserByEmailAsync(string email);
+
+
+
     }
 }

@@ -46,7 +46,7 @@ namespace IdentityFrameworkDemo.Controllers
                 }
 
                 ModelState.Clear();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("ConfirmEmail", new { email = signUpModel.Email});
             }
             return View(signUpModel);
         }
@@ -128,8 +128,12 @@ namespace IdentityFrameworkDemo.Controllers
 
         //This Controller Action Method Will Handle the GetRequest of the Link in the Email on the Server
         [HttpGet("confirm-email")]
-        public async Task<IActionResult> ConfirmEmail(string uid, string token)
+        public async Task<IActionResult> ConfirmEmail(string uid, string token, string email)
         {
+            EmailConfirmModel model = new EmailConfirmModel()
+            {
+                Email = email
+            };
             if (!string.IsNullOrEmpty(uid) && !string.IsNullOrEmpty(token)) 
             {
                 token = token.Replace(' ', '+');
@@ -137,10 +141,35 @@ namespace IdentityFrameworkDemo.Controllers
                 if (result.Succeeded) 
                 {
                     //Flag for the Success
-                    ViewBag.IsSuccess = true;
+                    //ViewBag.IsSuccess = true;
+                    model.EmailVerified = true;
                 }
             }
-            return View();
+            return View(model);
+        }
+
+        [HttpPost("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail(EmailConfirmModel model)
+        {
+            if (ModelState.IsValid) {
+                ApplicationUser user = await _accountRepository.GetUserByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    if (user.EmailConfirmed)
+                    {
+                        model.IsConfirmed = true;
+                        return View(model);
+                    }
+                    await _accountRepository.GenerateEmailConfirmationTokenAsync(user);
+                    model.EmailSent = true;
+                    ModelState.Clear();     
+                }
+                else 
+                {
+                    ModelState.AddModelError("","Something Went Wrong");
+                }   
+            }
+            return View(model);
         }
 
     }
