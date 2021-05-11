@@ -54,6 +54,7 @@ namespace IdentityFrameworkDemo.Repository
             return result;
         }
 
+        //This Method will generate Token and Send it with the Email for EmailConfirmation
         public async Task GenerateEmailConfirmationTokenAsync(ApplicationUser user) 
         {
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -63,6 +64,19 @@ namespace IdentityFrameworkDemo.Repository
                 await SendEmailConfirmationEmail(user, token);
             }
         }
+
+
+        //This Method will generate Token and Send it with the Email for ForgotPassword
+        public async Task GenerateForgotPasswordTokenAsync(ApplicationUser user)
+        {
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            if (!string.IsNullOrEmpty(token))
+            {
+                //Here we have to implement the code to send the Email with token to UserEmailId
+                await SendForgotPasswordEmail(user, token);
+            }
+        }
+
 
         public async Task<SignInResult> PasswordSignInAsync(SignInModel signInModel) 
         {
@@ -91,6 +105,12 @@ namespace IdentityFrameworkDemo.Repository
              return await _userManager.ConfirmEmailAsync(await _userManager.FindByIdAsync(uid),token);
         }
 
+        //This Method is Used to Reset the Password
+        public async Task<IdentityResult> ResetPasswordAsync(ResetPasswordModel model) 
+        {
+            return await _userManager.ResetPasswordAsync(await _userManager.FindByIdAsync(model.UserId),model.Token,model.NewPassword);
+        }
+
         //This Method will return the User by using the Email
         public async Task<ApplicationUser> GetUserByEmailAsync(string email)
         {
@@ -112,6 +132,23 @@ namespace IdentityFrameworkDemo.Repository
 
             };
             await _emailService.SendEmailForEmailConfirmation(Options);
+        }
+
+        private async Task SendForgotPasswordEmail(ApplicationUser user, string token)
+        {
+            string appDomain = _configuration.GetSection("Application:AppDomain").Value;
+            string confirmationLink = _configuration.GetSection("Application:ForgotPassword").Value;
+            UserEmailOptionsModel Options = new UserEmailOptionsModel
+            {
+                ToEmails = new List<string>() { user.Email },
+                Placeholders = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("{{UserName}}", user.FirstName),
+                    new KeyValuePair<string, string>("{{link}}", string.Format(appDomain + confirmationLink,user.Id,token))
+                }
+
+            };
+            await _emailService.SendEmailForForgotPassword(Options);
         }
 
     }

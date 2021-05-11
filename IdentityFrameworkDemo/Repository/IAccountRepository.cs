@@ -20,6 +20,9 @@ namespace IdentityFrameworkDemo.Repository
 
         Task<ApplicationUser> GetUserByEmailAsync(string email);
 
+        Task GenerateForgotPasswordTokenAsync(ApplicationUser user);
+        Task<IdentityResult> ResetPasswordAsync(ResetPasswordModel model);
+
 
 
     }

@@ -7,5 +7,7 @@ namespace IdentityFrameworkDemo.Services
     {
         Task SendTestEmail(UserEmailOptionsModel userEmailOptionsModel);
         Task SendEmailForEmailConfirmation(UserEmailOptionsModel userEmailOptionsModel);
+
+        Task SendEmailForForgotPassword(UserEmailOptionsModel userEmailOptionsModel);
     }
 }

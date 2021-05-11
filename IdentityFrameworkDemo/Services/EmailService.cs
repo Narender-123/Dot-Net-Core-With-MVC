@@ -39,6 +39,13 @@ namespace IdentityFrameworkDemo.Services
             await SendEmail(userEmailOptionsModel);
         }
 
+        public async Task SendEmailForForgotPassword(UserEmailOptionsModel userEmailOptionsModel)
+        {
+            userEmailOptionsModel.Subject = UpdatePlaceHolders("Hello {{UserName}} Reset your Password", userEmailOptionsModel.Placeholders);
+            userEmailOptionsModel.Body = UpdatePlaceHolders(GetEmailBody("ForgotPassword"), userEmailOptionsModel.Placeholders);
+            await SendEmail(userEmailOptionsModel);
+        }
+
 
 
         //This Method is Send the Mail

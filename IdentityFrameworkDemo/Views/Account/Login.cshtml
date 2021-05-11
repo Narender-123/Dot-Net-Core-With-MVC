@@ -46,9 +46,10 @@
         </div>
     </div>
     </div>
-    <div>
-        <p>Click <a asp-action="Index" asp-controller="Account" >Here</a>to Signup</p>
-    </div>
+<div>
+    <p>Click <a asp-action="ForgotPassword" asp-controller="Account">ForgotPassword</a></p>
+    <p>Click <a asp-action="Index" asp-controller="Account">Here</a>to Signup</p>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

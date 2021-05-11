@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using IdentityFrameworkDemo.Models;
 using IdentityFrameworkDemo.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IdentityFrameworkDemo.Controllers
 {
@@ -168,6 +169,61 @@ namespace IdentityFrameworkDemo.Controllers
                 {
                     ModelState.AddModelError("","Something Went Wrong");
                 }   
+            }
+            return View(model);
+        }
+
+        [AllowAnonymous ,HttpGet("forgot-password")]
+        public IActionResult ForgotPassword() 
+        {
+            return View();
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordModel model)
+        {
+            if (ModelState.IsValid) 
+            {
+                var user = await _accountRepository.GetUserByEmailAsync(model.Email);
+                if (user!=null)
+                {
+                    await _accountRepository.GenerateForgotPasswordTokenAsync(user);
+                }
+                
+                ModelState.Clear();
+                model.EmailSent = true;
+            }
+            return View(model);
+        }
+
+        [AllowAnonymous, HttpGet("reset-password")]
+        public IActionResult ResetPassword(string uid, string token)
+        {
+            ResetPasswordModel model = new ResetPasswordModel
+            {
+                UserId = uid,
+                Token = token
+            };
+            return View(model);
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Token = model.Token.Replace(' ','+');
+                var result = await _accountRepository.ResetPasswordAsync(model);
+                if (result.Succeeded)
+                {
+                    ModelState.Clear();
+                    model.IsSuccess = true;
+                    return View(model);
+                }
+                foreach (var error in result.Errors) 
+                {
+                    ModelState.AddModelError("",error.Description);
+                }                
             }
             return View(model);
         }
