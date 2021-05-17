@@ -193,8 +193,10 @@ D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\
 D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Shared\_header.cshtml.g.cs
 D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Shared\_LoginInfo.cshtml.g.cs
 D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Home\Demo1.cshtml.g.cs
-D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\IdentityFrameworkDemo.csprojAssemblyReference.cache
 D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Account\ChangePassword.cshtml.g.cs
 D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Account\ConfirmEmail.cshtml.g.cs
 D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Account\ForgotPassword.cshtml.g.cs
 D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Views\Account\ResetPassword.cshtml.g.cs
+D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
+D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\Details.cshtml.g.cs
+D:\PerkMinds\Dot Net Core With MVC\IdentityFrameworkDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
