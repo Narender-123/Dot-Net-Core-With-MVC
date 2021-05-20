@@ -49,7 +49,7 @@ namespace IdentityFrameworkDemo.Controllers
         }
 
         //Here we can Apply the Authorisation attribute to restrict the Unauthroized user
-        [Authorize]
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Privacy()
         {
             return View();

@@ -16,25 +16,30 @@ namespace IdentityFrameworkDemo.Repository
         //Here we have define the Fileds to Mange Our Entity
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUserService _userService;
         private readonly IEmailService _emailService;
         private readonly IConfiguration _configuration;
 
         //Here we have to Inject(Add) Dependencies bcoz we are using Identity Framework here So we are using the Classes that will handle the Details
 
-        public AccountRepository(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
+        public AccountRepository(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
             IUserService userService,
             IEmailService emailService,
             IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _userService = userService;
             _emailService = emailService;
             _configuration = configuration;
         }
         public async Task<IdentityResult> CreateAsyncUser(SignUpModel userModel)
         {
+            //We can use this to add Roles in Role Table _roleManager.CreateAsync();
             //Here We Create IdentityUser(=>Application User if we are adding Custom Properties to the Identity Class)
             var user = new ApplicationUser()
             {
@@ -44,6 +49,7 @@ namespace IdentityFrameworkDemo.Repository
                 Email = userModel.Email,
                 UserName = userModel.Email,
             };
+            //_userManager.AddToRoleAsync(user,"Admin");
             var result = await _userManager.CreateAsync(user, userModel.Password);
 
             //Code to Implement EmailConfirmation
@@ -80,7 +86,7 @@ namespace IdentityFrameworkDemo.Repository
 
         public async Task<SignInResult> PasswordSignInAsync(SignInModel signInModel) 
         {
-            var result = await _signInManager.PasswordSignInAsync(signInModel.Email, signInModel.Password,signInModel.RememberMe, false);
+            var result = await _signInManager.PasswordSignInAsync(signInModel.Email, signInModel.Password,signInModel.RememberMe, true);
             return result;
         }
 

@@ -82,6 +82,10 @@ namespace IdentityFrameworkDemo.Controllers
                 {
                     ModelState.AddModelError("", "Plz Confirm the Email First and then Login");
                 }
+                else if (result.IsLockedOut) 
+                {
+                    ModelState.AddModelError("","Plz Attempt After Some Time ");
+                }
                 else
                 {
                     //else we are geneate the Model state error

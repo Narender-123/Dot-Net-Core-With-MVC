@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqDeom1", "LinqDeom1.csproj", "{97059593-F497-4F78-926D-B0AADFF5ED8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "..\ConsoleApp1\ConsoleApp1.csproj", "{954C668D-6EEF-43CF-8088-27F1D69F1DBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97059593-F497-4F78-926D-B0AADFF5ED8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97059593-F497-4F78-926D-B0AADFF5ED8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97059593-F497-4F78-926D-B0AADFF5ED8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97059593-F497-4F78-926D-B0AADFF5ED8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{954C668D-6EEF-43CF-8088-27F1D69F1DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{954C668D-6EEF-43CF-8088-27F1D69F1DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{954C668D-6EEF-43CF-8088-27F1D69F1DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{954C668D-6EEF-43CF-8088-27F1D69F1DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B3451A5-2907-4936-BC9B-ECB4E85ADC4D}
+	EndGlobalSection
+EndGlobal

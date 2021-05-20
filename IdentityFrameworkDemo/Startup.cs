@@ -50,6 +50,9 @@ namespace IdentityFrameworkDemo
                 options.Password.RequireNonAlphanumeric = false;
 
                 options.SignIn.RequireConfirmedEmail = true;
+
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMilliseconds(20);
             });
 
             //Here we register the SMTPConfigModel to SMTPConfig 

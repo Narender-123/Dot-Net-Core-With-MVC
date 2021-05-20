@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cnXJMYZiNeTAz+PoP18ulr5z7Pk1xVtVgXkA0RuFYItFbfZIKZ8HSx8UEPBCBlyFPjGzytheUqVMju7BNPJG8Q==",
+  "dgSpecHash": "HGFR6uMa2HSBZ++mAVNV0f/QsVLVVzVDIr2ZU2oEzvHv488xpi6ibSnlTlBv/p4yDAfJrXPwalZZsIhpPzNPKQ==",
   "success": true,
   "projectFilePath": "D:\\PerkMinds\\Dot Net Core With MVC\\IdentityFrameworkDemo\\IdentityFrameworkDemo.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\om\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512",
     "C:\\Users\\om\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\om\\.nuget\\packages\\jquery\\1.12.4\\jquery.1.12.4.nupkg.sha512",
     "C:\\Users\\om\\.nuget\\packages\\jquery.ui.combined\\1.12.1\\jquery.ui.combined.1.12.1.nupkg.sha512",

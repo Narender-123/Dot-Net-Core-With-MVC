@@ -1,0 +1,11 @@
+//We Use the Sibgle File to Define all the Bundles in this application
+[
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [ "wwwroot/css/site.css", "wwwroot/css/NewFile.css" ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  }
+]
