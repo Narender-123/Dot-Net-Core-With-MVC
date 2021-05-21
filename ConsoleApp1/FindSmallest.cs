@@ -87,6 +87,40 @@ namespace ConsoleApp1
 
             //Find the Shorest Country Characters name With Using Linq---------------------------------------------------------
             Console.WriteLine("Greatest Counrty name has {0} Characters in its Name", Countries.Max(country => country.Length));
+
+            //===================Example of Agrregate Function in Linq Aggregate Opertaors=====================================
+
+            //Creation of string Without Using Linq Aggregate() Operator--------------------------------------------------------
+            String[] countries1 = {"India", "UK", "Canada", "Britin", "USA", "UK", "RSA", "SL", "China", "Russia", "France"};
+            String result3 = String.Empty;
+            foreach (String str in countries1 )
+            {
+                result3 = result3 + str + ", ";
+            }
+            int lastindex = result3.LastIndexOf(",");
+            result3 = result3.Remove(lastindex);
+            Console.Write(result3);
+
+            //Creation of string With Using Linq Aggregate() Operator--------------------------------------------------------
+            String result4 = countries1.Aggregate((a,b)=>a+", "+b);
+            Console.Write("\n"+result4);
+
+            //Calculatoin of running Product of an array---------------------------------------------------------------------
+            int[] numbers1 = { 4,5,6,7,8,6};
+            int productResult = 1;
+            foreach (int n in numbers1) 
+            {
+                productResult = productResult * n;
+            }
+            Console.WriteLine("\n The Product Result Without using Linq Aggregate()= {0} ", productResult);
+
+            //Calculatoin of running Product of an array with Aggregate Function-----------------------------------------------
+            productResult = numbers1.Aggregate((a,b)=>a*b);
+            Console.WriteLine("\n The Product Result With using Linq Aggregate()= {0} ", productResult);
+
+            //Calculatoin of running Product By Using Seed Parameter-----------------------------------------------------------
+            productResult = numbers1.Aggregate(10,(a, b) => a * b);
+            Console.WriteLine("\n The Product Result With Seed Pazrameter using Linq Aggregate()= {0} ", productResult);
         }
     }
 }
