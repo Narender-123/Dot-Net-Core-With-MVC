@@ -7,7 +7,7 @@ namespace ConsoleApp1
 {
     class FindSmallest
     {
-        static void Main() 
+        static void Main1() 
         {
             int[] Numbers = { 21, 22, 23, 24, 25, 26, 27, 28, 29, 1, 2, 3, 4, 5, 6, 7, 8, 45, 9, 10, 11, 12, 13, 14 };
             

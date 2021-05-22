@@ -6,7 +6,7 @@ namespace ConsoleApp1
 {
     class Program
     {
-        static void main()
+        static void main1()
         {
             String name = "Narender";
 

@@ -1,0 +1,12 @@
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\bin\Debug\ConsoleApp2.exe.config
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\bin\Debug\ConsoleApp2.exe
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\bin\Debug\ConsoleApp2.pdb
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\bin\Debug\EntityFramework.dll
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\bin\Debug\EntityFramework.SqlServer.dll
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\bin\Debug\EntityFramework.xml
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\bin\Debug\EntityFramework.SqlServer.xml
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\obj\Debug\ConsoleApp2.csprojAssemblyReference.cache
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.CoreCompileInputs.cache
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.CopyComplete
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\obj\Debug\ConsoleApp2.exe
+D:\PerkMinds\Dot Net Core With MVC\ConsoleApp2\obj\Debug\ConsoleApp2.pdb
