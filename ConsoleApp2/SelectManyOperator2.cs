@@ -9,7 +9,7 @@ namespace ConsoleApp2
     class SelectManyOperator2
     {
         //SelectMany Operator belong to Projection Operators category. It is used to project each element of a sequence to an IEnumerable<T> and flattens the resulting sequences into one sequence.
-        static void Main()
+        static void Main1()
         {
             //Return all the Subject List------------------------------------------------------------------------------------------------------------------------------------------------------------------
             IEnumerable<string> Subjects10 = Student1.GetAllStudents().SelectMany(stu => stu.Subjects); //This will return all the subjects of all the students repeatidly

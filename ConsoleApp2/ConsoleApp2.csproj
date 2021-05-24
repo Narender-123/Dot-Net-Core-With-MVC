@@ -77,11 +77,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="OrderingOperator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="SelectOperator1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectManyOperator2.cs" />
+    <Compile Include="SelectVsSelectMany.cs" />
     <Compile Include="Student1.cs" />
+    <Compile Include="Student2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
