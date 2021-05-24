@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp2
 {
-    class ProgRestrictionOperator1
+    class SelectOperator1
     {
-        static void Main() 
+        static void Main1() 
         {
             //Here we Use Select Standered Query Operator to return a new List 
             IEnumerable<int> result1 = Employee1.GetAllEmployees().Select(emp => emp.Id);
