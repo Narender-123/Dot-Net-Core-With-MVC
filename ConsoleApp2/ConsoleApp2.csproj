@@ -85,6 +85,8 @@
     <Compile Include="SelectVsSelectMany.cs" />
     <Compile Include="Student1.cs" />
     <Compile Include="Student2.cs" />
+    <Compile Include="Student3.cs" />
+    <Compile Include="ThenBy_ThenByDescending_ReverseOperator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

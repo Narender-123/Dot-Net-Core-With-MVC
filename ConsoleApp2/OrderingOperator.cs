@@ -8,7 +8,7 @@ namespace ConsoleApp2
 {
     class OrderingOperator
     {
-        static void Main() {
+        static void Main1() {
             //The Student List Before applyin the Sorting Ordering Operator
             Console.WriteLine("Before Sorting the List of Student :");
             IEnumerable<Student2> students0 = Student2.GetAllStudents();
