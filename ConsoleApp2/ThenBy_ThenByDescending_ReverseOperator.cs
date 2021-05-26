@@ -12,7 +12,7 @@ namespace ConsoleApp2
 {
     class ThenBy_ThenByDescending_ReverseOperator
     {
-        static void  Main()
+        static void  Main1()
         {
             //The Linq Query to Get All the Students--------------------------------------------------------------------------------------------------------------------
             Console.WriteLine("Before Sorting:");

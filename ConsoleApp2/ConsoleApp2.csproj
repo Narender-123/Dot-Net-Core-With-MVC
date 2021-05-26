@@ -78,6 +78,8 @@
       <DependentUpon>EmployeeModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="OrderingOperator.cs" />
+    <Compile Include="PagingUsingSkip_TakeOpeartor.cs" />
+    <Compile Include="PartioningOpertors.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="SelectOperator1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Student1.cs" />
     <Compile Include="Student2.cs" />
     <Compile Include="Student3.cs" />
+    <Compile Include="Student4.cs" />
     <Compile Include="ThenBy_ThenByDescending_ReverseOperator.cs" />
   </ItemGroup>
   <ItemGroup>
