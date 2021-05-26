@@ -14,7 +14,7 @@ namespace ConsoleApp2
     }
     class DefferedAndImmediateOperators
     {
-        static void Main()
+        static void Main1()
         {
             List<Student5> students = new List<Student5>
             {

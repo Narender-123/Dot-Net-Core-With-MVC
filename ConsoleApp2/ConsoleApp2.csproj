@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConversionOpeartors.cs" />
     <Compile Include="DefferedAndImmediateOperators.cs" />
     <Compile Include="Department.cs">
       <DependentUpon>EmployeeModel.tt</DependentUpon>
