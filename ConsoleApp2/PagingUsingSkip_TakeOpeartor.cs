@@ -10,7 +10,7 @@ namespace ConsoleApp2
 {
     class PagingUsingSkip_TakeOpeartor
     {
-        static void Main()
+        static void Main1()
         {
             IEnumerable<Student4> students = Student4.GetAllStudetns();
             do
