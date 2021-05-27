@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -103,6 +104,38 @@ namespace ConsoleApp2
                     Console.WriteLine(emp.Name+"\t\t"+emp.JobTitle+"\t\t"+emp.Name);
                 }
             }
+
+            //Cast<T> Operator: Cast operator attempts to convert all of the items within an existing collection to another type and return them in a new collection.
+            //If an item fails conversion an exception will be thrown. This method uses deferred execution.
+            ArrayList list = new ArrayList();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Add("Abc");
+
+            //Cast: Differed exceution it Follows and also Convert into the Specified type and Throw Exception
+            IEnumerable<int> items1 = list.Cast<int>();
+            //OfType : OfType operator will return only elements of the specified type. The other type elements are simply ignored and excluded from the result set
+            IEnumerable<int> items2 = list.OfType<int>();
+            foreach (int item in items2) 
+            {
+                Console.WriteLine(item);
+            }
+
+
+            //The main use of AsQueryable operator is unit testing to mock a queryable data source using an in-memory data source. We will discuss this operator in detail with examples in unit testing video series.
+            EmployeeDBDataContext db = new EmployeeDBDataContext(); //Creating a Connection to the Database we are used
+            var result = db.Employee3s
+                .Where(emp => emp.Gender == "Male")
+                .AsEnumerable()
+                .OrderByDescending(emp => emp.Salary)
+                .Take(5);
+            Console.WriteLine("Top 5 Salaries of Male Employees");
+            foreach (var emp in result)
+            {
+                Console.WriteLine(emp.Id + "\t\t" + emp.Name + "\t\t" + emp.Salary);
+            }
+
         }
     }
 }
