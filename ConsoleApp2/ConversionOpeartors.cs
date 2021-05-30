@@ -22,7 +22,7 @@ namespace ConsoleApp2
     }
     class ConversionOpeartors
     {
-        static void Main()
+        static void Main1()
         {
             //Here we Convert the array of int to List<int> by using ToList() method which is Standered Query Operator of Category ConversionType
             Console.WriteLine("List<string> items are here:");

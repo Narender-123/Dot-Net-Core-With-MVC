@@ -61,10 +61,14 @@
     <Compile Include="Department.cs">
       <DependentUpon>EmployeeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Department1.cs" />
+    <Compile Include="ElementOperators.cs" />
     <Compile Include="Employee.cs">
       <DependentUpon>EmployeeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee1.cs" />
+    <Compile Include="Employee4.cs" />
+    <Compile Include="Employee5.cs" />
     <Compile Include="EmployeeDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,6 +89,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="GroupingOpeartor.cs" />
+    <Compile Include="GroupJoinOperator.cs" />
+    <Compile Include="InnerJoinOperator.cs" />
+    <Compile Include="LeftJoinOperator.cs" />
     <Compile Include="OrderingOperator.cs" />
     <Compile Include="PagingUsingSkip_TakeOpeartor.cs" />
     <Compile Include="PartioningOpertors.cs" />
