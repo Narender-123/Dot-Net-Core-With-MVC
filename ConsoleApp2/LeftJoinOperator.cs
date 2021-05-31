@@ -8,7 +8,7 @@ namespace ConsoleApp2
 {
     class LeftJoinOperator
     {
-        static void Main()
+        static void Main1()
         {
             //Sql Like Syntax :
             var result1 = from e in Employee5.GetAllEmployees()
